@@ -1,0 +1,210 @@
+\documentclass[10pt]{article}
+
+\usepackage{fullpage}
+\usepackage[margin=1.5in]{geometry} 
+\usepackage[english]{babel}
+\usepackage{algorithm}
+\usepackage[utf8]{inputenc}
+\usepackage{arevmath}
+\usepackage[noend]{algpseudocode}
+
+
+\title{BETA FUNCTION CALCULATION}
+\author{Indraneel Rachakonda, 40206072}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{Introduction}
+Beta function is also known as Euler's integral of first kind and is very important in calculus and is basically an association between input and output values. The beta function is used to determine average time to complete some tasks in the time related problems. Beta function has a very close connection to the gamma function which also the generalisation of the factorial function. The beta function is defined as follows: 
+
+
+    $$\beta(x,y) =\int_{0}^{1} t^{x-1} (1-t)^{y-1} dt$$
+    for Re (x) $>$ 0 and Re (y) $>$ 0
+    
+\subsubsection*{Domain}
+Re (x) $>$ 0 and Re (y) $>$ 0
+
+\subsubsection*{Co-domain}
+All real numbers \[ (-\infty,\infty )\]
+
+\subsubsection*{Characteristics}
+\begin{itemize}
+    \item The beta function is uniquely defined for positive numbers and complex numbers with positive real parts. It is approximated for other numbers.
+    \item Beta function is symmetric,$$ \beta(x,y) = \beta(y,x)$$
+    \item A key property of beta function is that it is closly related to the gamma function
+    $$\beta(x,y) = \frac{\gamma(x)\gamma(y)}{\gamma(x+y)}$$
+\end{itemize}
+
+\subsubsection*{Applications}
+\begin{itemize}
+    \item The Beta function was the first known 'Scattering' amplitude in String theory.
+    \item In physics and string theory the beta function is used to calculate and reproduce scattering amplitudes in terms of the Regge trajectories.
+\end{itemize}
+
+\section*{Functional Requirements}
+
+
+\begin{itemize}
+    \item \textbf{R-1}: The Beta Function can provide an output if it has an input from a domain comprising of positive Real Numbers only.
+    \item \textbf{R-2}:  The Beta Function , can only provide an output if its parameters , X and Y are both positive numbers i.e. Real Number X $>$ 0 and Real Number Y $>$ 0.
+    \item \textbf{R-3}:To compute the value of the Beta Function , a subordinate function needs to be used to calculate the value of A raised to the power B. In other words we need to define a power function to calculate $A^B$ .
+\end{itemize}
+
+
+\section*{Non Functional Requirements}
+
+\begin{itemize}
+    \item \textbf{R-1}: The method used to calculate the Beta Function , should be scalable for different input values and different Hardware Requirements.
+    
+\end{itemize}
+
+
+
+
+
+\section*{Assumptions}
+There are following assumptions made for the class project for the Beta function:
+\begin{itemize}
+    \item \textbf{A-1}: The function will only accept the real positive numbers to limit the scope of the function.
+    
+\end{itemize}
+
+
+\section*{Following is the pseudo-code for the Beta function:}
+
+\begin{algorithm}
+\caption{Calculate the Beta function}
+\begin{algorithmic}[1]
+
+\Procedure{Beta}{$x,y$}
+    \State System Initialization
+    \State Read input values
+    \If{(x and y $>$ 0)}
+    \State betaNum $\gets \textsc{Gamma}(x) * \textsc{Gamma}(y);$
+    \State betaDen $\gets \textsc{Gamma}(x+y);$
+    \State result $\gets$ betaNum$\div$ betaDen 
+    \State \Return result;
+    \Else
+    \State \Return;
+    \EndIf
+\EndProcedure
+\State
+\Procedure{Gamma}{$num$}
+    \State pi $\gets$ 3.1416; \Comment{Pi value is used in gamma function}
+    \State eBase $\gets$ 2.7183; \Comment{This is the base of natural logarithm}
+    \State varA $\gets$ (2 $\times$ pi) $\div$ num;
+    \State varB $\gets$ num $\div$ eBase;
+    \State squareRoot $\gets$ $\sqrt{varA}$;
+    \State powerUp $\gets$ varB$^{num}$;
+    \State result $\gets$ squareRoot $\times$ powerUp;
+    \State \Return result;
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\section*{Algorithms:}
+\subsection*{Gamma function and Beta function relation:}
+My first decision is to use the Gamma function for calculating the Beta function, as the implementation becomes much easier. As I have stated in the project-description, the Beta function is closely related to the Gamma function as;
+$$\beta(x,y) = \frac{\gamma(x)\gamma(y)}{\gamma(x+y)}$$
+So, by this it is clear that gamma function helps in calculating the beta function as well.
+\subsection*{Algorithms for Gamma function:}
+There are two different algorithms or approximation techniques by which the Gamma function can be calculated. They are \textit{Stirling's Approximation} and \textit{Lanczos approximation}, and for the ease of my project I have decided to go with \textit{Stirling's Approximation}. The reasons for this choice are explained below;
+\begin{itemize}
+    \item \textbf{Stirling's Approximation}: This is basically the approximation for \textit{factorials} which is also very accurate when we are calculating the Gamma function for very small numbers as well, eg. 0.0001, which is one of the reasons to choose this approximation technique. Another reason is that the Big O notation of the  \textit{Stirling's Approximation} is O($\log_2$ n)
+    
+    \item \textbf{Lanczos Approximation}: This is basically for calculating the Gamma function numerically. It focuses more on precision on decimal places and is relatively complex than the \textit{Stirling's Approximation}.
+\end{itemize}
+
+\section*{DVCS}
+Following is the address of the GitHub,\\ https://github.com/Indraneel-concordia/SOEN6011-Project
+
+\section*{Debugger}
+I am using the inbuilt debugger from the Eclipse Oxygen IDE for debugging my code throughout and also testing my methods for accuracy and testing purpose. Eclipse debugger is the essential option to use as it is free and open source. Also since I have been using eclipse IDE for the better part of my student career, the familiarity to the eclipse debugger is another important reason for me to choose it.
+\subsection*{Advantages}
+\begin{itemize}
+    \item It is free and open source.
+    \item It supports other languages as well other than JAVA.
+    \item Functionalities like step into code/ step out of code and step over code are provided.
+    \item There is option for framework integration like JUnit etc.
+    
+\end{itemize}
+
+\subsection*{Disadvantages}
+\begin{itemize}
+    \item It is usually slower than other debuggers like Visual studio.
+    \item The independent processes cannot be attached to the eclipse debugger to debug and test.
+\end{itemize}
+
+\section*{Correctness}
+ 
+This source code calculates Beta function B(X, Y), for \ $ x, y \subset (0, +  \infty). $ The theory behind this program is based on mathematics integral calculation. The answer is obtained through solving mathematics integral by using java code implementation. This calculation does not import any packages, nor any build-in java functions. It combines empirical equation into Beta function:   \\
+ $ B (x,y) =  \Gamma(x) \Gamma(y)  / \Gamma( x+y) $ \\
+ $ B (x,y) =  $$\int_{0}^{\infty} t^{x-1} \times (1-t)^{y-1} dt$$   \\ 
+
+
+\section*{Efficiency}
+
+This program works with double datatype. This is a primitive datatype and it does not require much system memories. Generally speaking, for all values satisfying within the valid input range, and working on an average speed computer in 21 centuries, the program can generate results in milliseconds. The accuracy also decides the code efficiency. This program can estimate the solution in the accuracy of 15 digits after decimal point. 
+
+\section*{Maintainability and Program Style}
+
+Naming convention has applied. This provides a strong foundation for future maintenance. It is also easier for other developers to follow the current progress. Besides, documentation is necessary for engineers to trace back the developing history, which is an important resource to set up current maintainable decisions. This Beta Calculator program generates Javadoc, such as public class declaration and methods explanation have been added. Indentation and statement has been regulated. The code follows line wrapping and line break strictly. There is no extra whitespace. Exactly each section has one blank line to separate. For annotations, override, and static members have been used carefully with quality. Thus, by following the standard programming style, readability and maintainability have increases. Software engineers are easy to understand and catch up with other people’s work. 
+
+
+\section*{Robustness and JUnit Testing}
+
+In order to increase the robustness, this program introduces Java JUnit testing. This program contains Junit assert .java file ($ AssertTests.java $). In order to build a robust software. It demonstrates requirements and has covered in detailed Junit Assert test cases. Software testing is believed to be useful to increase software robustness. The program has passed all test cases.
+
+
+\section*{Feasibility, Error handling, Usability}
+
+
+This program has a clear user interface. It is straight forward for user to understand the logic and instructions. This program also kindly reminds user if he has input a valid value. If error occurs, error handling exceptions shall be invoked. Try and catch blocks keep the program functioning, and exceptions have thrown error messages to remind user. This program also paid attentions in feasibility for user in the design phase, and has built to pursuit user-friendly aspect.
+
+
+
+
+
+\section*{SonarLint}
+ 
+SonarLint is an IDE extension that helps you detect and fix quality issues as you write code. Like a spell checker, SonarLint squiggles flaws so that they can be fixed before committing code.
+
+\begin{thebibliography}{}
+
+\bibitem{wikipedia_b}
+Wikiedia: Beta Function,
+\\\texttt{https://en.wikipedia.org/wiki/Beta\_function}
+\bibitem{wikipedia_s}
+Wikiedia: Stirling's approximation,
+\\\texttt{https://en.wikipedia.org/wiki/Stirling\%27s\_approximation}
+\bibitem{wikipedia_l}
+Wikiedia: Lanczos approximation,
+\\\texttt{https://en.wikipedia.org/wiki/Lanczos\_approximation}
+\bibitem{Riddhi D}
+Beta function and its Applications.
+\textit{by Riddhi D.}
+Department of Physics and Astronomy
+The University of Tennessee
+Knoxville, TN 37919, USA
+\bibitem{wikipedia}
+Wikiedia: Beta Function,
+\\\texttt{https://en.wikipedia.org/wiki/Beta\_function}
+\bibitem{brilliant}
+Brilliant: The Beta Function,
+\\\texttt{https://brilliant.org/wiki/beta-function/}
+\bibitem{quora}
+Quora: What is a Beta Function,
+\\\texttt{https://www.quora.com/What-is-beta-function}
+
+\bibitem{Google Java Style Guide}
+Google Java Style Guide. Retrieved July 26, 2019,
+\\\$ https://google.github.io/styleguide/javaguide.html $
+
+
+
+
+\end{thebibliography}
+
+\end{document}
