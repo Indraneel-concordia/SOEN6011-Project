@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import com.soen6011.model.*;
 import com.soen6011.utilities.*;
 
-public class TestBetaFucntion {
+public class AssertTests {
 	Model model = new Model();
 
 	@Test
